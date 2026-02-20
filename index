@@ -7,21 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@200;300;400;500;600&family=Mitr:wght@200;300;400;500;600&family=Prompt:wght@200;300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blush: #E8B4A2;
-    --blush-light: #F5D5C8;
+    --blush: #D4A99A;
+    --blush-light: #E8CFC6;
     --blush-pale: #FDF0EB;
-    --peach: #D4917A;
-    --coral-muted: #C27B6A;
-    --sage: #9CAF88;
-    --sage-light: #C5D5B5;
-    --ivory: #FBF7F2;
-    --champagne: #D9C9B6;
+    --peach: #CB8E7E;
+    --coral-muted: #B87A6B;
+    --sage: #A3AB91;
+    --sage-light: #C5CDBA;
+    --ivory: #F5EDE6;
+    --champagne: #D9C5B4;
     --champagne-light: #EDE4D9;
     --cream: #FFF9F5;
     --text-dark: #4A3F3A;
     --text-mid: #7A6E68;
     --text-light: #A89E98;
-    --coral-accent: #C85A3A;
+    --coral-accent: #B8674E;
     --border: #E8DED6;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -121,8 +121,8 @@
     border-radius: 30px 30px 0 0;
     opacity: 0.5;
   }
-  .color-palette { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-  .palette-dot { width: 12px; height: 12px; border-radius: 50%; opacity: 0.6; }
+  .color-palette { display: flex; justify-content: center; gap: 14px; margin-top: 22px; }
+  .palette-dot { width: 22px; height: 22px; border-radius: 50%; opacity: 0.85; }
   .texture {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C85A3A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -223,7 +223,103 @@
     content: '▾'; position: absolute; right: 14px; top: 50%;
     transform: translateY(-50%); color: var(--text-light); pointer-events: none;
   }
+
+  /* GUEST BUTTONS */
+  .guest-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .guest-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    border: 1.5px solid var(--champagne);
+    background: var(--cream);
+    font-family: 'IBM Plex Sans Thai', 'Prompt', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .guest-btn:hover {
+    border-color: var(--blush);
+    background: var(--blush-pale);
+  }
+  .guest-btn.selected {
+    border-color: var(--coral-accent);
+    background: var(--peach);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 3px 12px rgba(184,103,78,0.35);
+    transform: scale(1.08);
+  }
   .helper-text { font-size: 12.5px; color: var(--text-light); margin-top: 10px; font-weight: 300; font-style: italic; }
+
+  /* TIMELINE */
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(to right, var(--blush), var(--champagne), var(--blush));
+  }
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+  }
+  .timeline-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--coral-accent);
+    margin-bottom: 6px;
+  }
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--blush);
+    border: 2.5px solid white;
+    box-shadow: 0 0 0 2px var(--blush);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-content { padding: 0 4px; }
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .timeline-desc {
+    font-size: 12px;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+  @media (max-width: 480px) {
+    .timeline-title { font-size: 11px; }
+    .timeline-desc { font-size: 11px; }
+    .timeline-time { font-size: 15px; }
+  }
 
   /* TEXTAREA */
   .textarea {
@@ -256,16 +352,28 @@
   .success-screen {
     display: none; text-align: center; background: white; border-radius: 12px;
     padding: 60px 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); margin-top: 16px;
+    position: relative; overflow: hidden;
+  }
+  .success-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0.12;
+    pointer-events: none;
+    object-fit: cover;
   }
   .success-screen.visible { display: block; }
-  .success-icon { font-size: 64px; margin-bottom: 20px; }
-  .success-screen h2 { font-family: 'Mitr', sans-serif; font-size: 26px; color: var(--coral-accent); margin-bottom: 12px; font-weight: 400; }
-  .success-screen p { font-size: 15px; color: var(--text-mid); line-height: 1.8; font-weight: 300; }
+  .success-icon { font-size: 64px; margin-bottom: 20px; position: relative; z-index: 1; }
+  .success-screen h2 { font-family: 'Mitr', sans-serif; font-size: 26px; color: var(--coral-accent); margin-bottom: 12px; font-weight: 400; position: relative; z-index: 1; }
+  .success-screen p { font-size: 15px; color: var(--text-mid); line-height: 1.8; font-weight: 300; position: relative; z-index: 1; }
   .submit-another {
     display: inline-block; margin-top: 24px; padding: 10px 28px;
     background: var(--blush-pale); color: var(--coral-muted); border: 1.5px solid var(--blush);
     border-radius: 8px; font-family: 'IBM Plex Sans Thai', 'Prompt', sans-serif; font-size: 14px;
-    cursor: pointer; transition: all 0.2s;
+    cursor: pointer; transition: all 0.2s; position: relative; z-index: 1;
   }
   .submit-another:hover { background: var(--blush-light); }
   .spinner {
@@ -334,11 +442,11 @@
       มหาวิทยาลัยราชภัฏสกลนคร
     </div>
     <div class="color-palette">
-      <div class="palette-dot" style="background: var(--blush);"></div>
-      <div class="palette-dot" style="background: var(--ivory); border: 1px solid var(--champagne);"></div>
-      <div class="palette-dot" style="background: var(--sage);"></div>
-      <div class="palette-dot" style="background: var(--coral-muted);"></div>
-      <div class="palette-dot" style="background: var(--champagne);"></div>
+      <div class="palette-dot" style="background: #D4A99A;"></div>
+      <div class="palette-dot" style="background: #F5EDE6; border: 1px solid #E0D6CC;"></div>
+      <div class="palette-dot" style="background: #A3AB91;"></div>
+      <div class="palette-dot" style="background: #CB8E7E;"></div>
+      <div class="palette-dot" style="background: #D9C5B4;"></div>
     </div>
   </div>
 
@@ -346,6 +454,42 @@
     <h1>🌸 แบบตอบรับร่วมงานแต่งงาน</h1>
     <p>เราทั้งสองรู้สึกเป็นเกียรติอย่างยิ่งที่จะได้เรียนเชิญท่านมาร่วมเป็นส่วนหนึ่งในวันสำคัญของเรา</p>
     <p class="required-note">* จำเป็นต้องกรอก</p>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-card">
+    <div class="section-header blush-header">
+      <h2 class="blush-text">กำหนดการ</h2>
+      <p>วันอาทิตย์ที่ 3 พฤษภาคม 2569</p>
+    </div>
+    <div class="section-body">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Welcome & Photo Session</div>
+            <div class="timeline-desc">ถ่ายภาพร่วมกัน 📸</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Celebration Ceremony</div>
+            <div class="timeline-desc">พิธีการฉลองมงคลสมรส 💍</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Thank You Lunch</div>
+            <div class="timeline-desc">ร่วมรับประทานอาหาร 🍽️</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <form id="weddingForm" onsubmit="return false;">
@@ -395,19 +539,18 @@
         </div>
         <div id="guests-section" style="display:none;">
         <div class="form-group" id="fg-guests">
-          <label class="form-label">จำนวนผู้ติดตาม (รวมตัวท่านเอง) <span class="required">*</span></label>
-          <div class="dropdown-wrapper">
-            <select class="dropdown" id="guests">
-              <option value="" disabled selected>เลือก</option>
-              <option value="1">1 ท่าน</option>
-              <option value="2">2 ท่าน</option>
-              <option value="3">3 ท่าน</option>
-              <option value="4">4 ท่าน</option>
-              <option value="5">5 ท่าน</option>
-            </select>
+          <label class="form-label">มากี่ท่าน? (นับรวมตัวท่านเอง) <span class="required">*</span></label>
+          <div class="form-sublabel">เช่น มาคนเดียว = 1 / มากับแฟน = 2 / มาทั้งครอบครัว = 3-5</div>
+          <div class="guest-buttons">
+            <button type="button" class="guest-btn" onclick="selectGuest(this, '1')">1</button>
+            <button type="button" class="guest-btn" onclick="selectGuest(this, '2')">2</button>
+            <button type="button" class="guest-btn" onclick="selectGuest(this, '3')">3</button>
+            <button type="button" class="guest-btn" onclick="selectGuest(this, '4')">4</button>
+            <button type="button" class="guest-btn" onclick="selectGuest(this, '5')">5</button>
           </div>
-          <div class="helper-text">🪑 เพื่อการจัดสรรที่นั่งที่แม่นยำ</div>
-          <div class="error-msg">กรุณาเลือกจำนวนผู้ติดตาม</div>
+          <input type="hidden" id="guests" value="">
+          <div class="helper-text">🪑 เพื่อจัดเตรียมที่นั่งและอาหารให้เพียงพอ</div>
+          <div class="error-msg">กรุณาเลือกจำนวน</div>
         </div>
         </div>
       </div>
@@ -420,6 +563,7 @@
         <p>สำหรับผู้ที่มาไม่ได้ — ส่งความรักผ่านตัวอักษร 💌</p>
       </div>
       <div class="section-body">
+        <p style="font-size: 14px; color: var(--text-mid); font-weight: 300; line-height: 1.8; margin-bottom: 20px;">พวกเราเข้าใจและไม่ได้ถือสาแต่อย่างใดค่ะ 🤍<br>แม้ไม่ได้มาร่วมงาน แต่พวกเรารู้สึกได้ถึงกำลังใจจากท่านเสมอ<br>หากมีคำอวยพร จะเป็นเกียรติอย่างยิ่งค่ะ</p>
         <div class="form-group">
           <label class="form-label">ข้อความอวยพรถึงบ่าวสาว 💐</label>
           <textarea class="textarea" id="wishes" placeholder="เขียนข้อความอวยพรของท่านที่นี่..."></textarea>
@@ -434,10 +578,11 @@
   </form>
 
   <div class="success-screen" id="success-screen">
+    <img src="thankyou-photo.jpg" class="success-watermark" alt="">
     <div class="success-icon">🌸</div>
     <h2>ขอบคุณที่ตอบรับค่ะ/ครับ!</h2>
     <p>เราทั้งสองรู้สึกยินดีเป็นอย่างยิ่ง<br>ที่ท่านสละเวลาตอบแบบฟอร์มนี้</p>
-    <p style="margin-top: 16px;">💕 <strong>พัชราภา & พิพัฒพงศ์</strong></p>
+    <p style="margin-top: 16px; position: relative; z-index: 1;">💕 <strong>พัชราภา & พิพัฒพงศ์</strong></p>
     <button class="submit-another" onclick="resetAndShowForm()">ส่งคำตอบอีกครั้ง</button>
   </div>
 
@@ -458,7 +603,7 @@
 // ══════════════════════════════════════════════════════
 // ⬇️ ใส่ URL ตรงนี้ (ดูวิธีทำในคู่มือ)
 // ══════════════════════════════════════════════════════
-const GOOGLE_SCRIPT_URL = 'ใส่_URL_ตรงนี้';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSQXZ-q9BSZAi55NYWS6eBmn9tfg9tHyu3qdGqIJhWguAU2Kveggw0TXoyclLIJ5BI/exec';
 // ══════════════════════════════════════════════════════
 
 let selectedRSVP = '';
@@ -497,7 +642,7 @@ async function submitForm() {
       fullname: document.getElementById('fullname').value.trim(),
       nickname: document.getElementById('nickname').value.trim(),
       rsvp: rsvpMap[selectedRSVP],
-      guests: document.getElementById('guests').value ? document.getElementById('guests').value + ' ท่าน' : '-',
+      guests: document.getElementById('guests').value || '-',
       wishes: document.getElementById('wishes').value.trim() || '-'
     });
     await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
@@ -514,8 +659,10 @@ function resetForm() {
   document.getElementById('guests').value = '';
   selectedRSVP = '';
   document.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.guest-btn').forEach(b => b.classList.remove('selected'));
   document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
   document.getElementById('wishes-section').classList.remove('visible');
+  document.getElementById('guests-section').style.display = 'none';
 }
 
 function resetAndShowForm() {
@@ -526,9 +673,15 @@ function resetAndShowForm() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function selectGuest(el, value) {
+  document.querySelectorAll('.guest-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('guests').value = value;
+  document.getElementById('fg-guests').classList.remove('error');
+}
+
 document.getElementById('fullname').addEventListener('input', () => document.getElementById('fg-fullname').classList.remove('error'));
 document.getElementById('nickname').addEventListener('input', () => document.getElementById('fg-nickname').classList.remove('error'));
-document.getElementById('guests').addEventListener('change', () => document.getElementById('fg-guests').classList.remove('error'));
 </script>
 </body>
 </html>
